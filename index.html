@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Deutsch Daily - English to German Practice</title>
+    <meta
+      name="description"
+      content="A dark, goal-based English to German sentence practice app with daily targets, streaks, progress projections, and open-source sentence packs."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="app" class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="#practice" aria-label="Deutsch Daily home">
+          <span class="brand-mark" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </span>
+          <span>Deutsch Daily</span>
+        </a>
+
+        <nav class="top-actions" aria-label="Project links">
+          <a class="text-link" href="https://github.com/" target="_blank" rel="noreferrer">Open Source</a>
+          <a class="coffee-link" href="https://www.buymeacoffee.com/" target="_blank" rel="noreferrer">Buy Me a Coffee</a>
+        </nav>
+      </header>
+
+      <main id="practice" class="layout">
+        <aside class="panel controls-panel" aria-label="Practice controls">
+          <section class="control-group">
+            <div class="section-title">Daily Goal</div>
+            <div class="segmented" role="group" aria-label="Daily sentence goal">
+              <button class="segment is-active" data-goal="10" type="button">10</button>
+              <button class="segment" data-goal="20" type="button">20</button>
+              <button class="segment" data-goal="30" type="button">30</button>
+            </div>
+          </section>
+
+          <section class="control-group">
+            <div class="section-title">Level</div>
+            <div class="level-grid" role="group" aria-label="German level">
+              <button class="level-pill is-active" data-level="A1" type="button">A1</button>
+              <button class="level-pill" data-level="A2" type="button">A2</button>
+              <button class="level-pill" data-level="B1" type="button">B1</button>
+              <button class="level-pill" data-level="B2" type="button">B2</button>
+              <button class="level-pill" data-level="C1" type="button">C1</button>
+            </div>
+          </section>
+
+          <section class="control-group">
+            <div class="section-title">Mode</div>
+            <div class="mode-list" role="group" aria-label="Practice mode">
+              <button class="mode-button is-active" data-mode="en-de" type="button">English to German</button>
+              <button class="mode-button" data-mode="de-en" type="button">German to English</button>
+              <button class="mode-button" data-mode="quiz" type="button">Type German</button>
+            </div>
+          </section>
+
+          <section class="stat-tile">
+            <span class="stat-label">Today</span>
+            <strong id="todayCount">0/10</strong>
+            <div class="progress-track" aria-hidden="true">
+              <span id="todayBar"></span>
+            </div>
+          </section>
+
+          <section class="stat-row">
+            <div class="mini-stat">
+              <span>Streak</span>
+              <strong id="streakCount">0 days</strong>
+            </div>
+            <div class="mini-stat">
+              <span>Weak</span>
+              <strong id="weakCount">0</strong>
+            </div>
+          </section>
+        </aside>
+
+        <section class="practice-panel" aria-label="German practice card">
+          <div class="deck-meta">
+            <span id="cardLevel">A1</span>
+            <span id="cardCategory">Basics</span>
+            <span id="cardPosition">1 of 1</span>
+          </div>
+
+          <article class="flashcard" aria-live="polite">
+            <div class="prompt-label" id="promptLabel">English</div>
+            <h1 id="promptText">Loading...</h1>
+
+            <form id="quizForm" class="quiz-form is-hidden" autocomplete="off">
+              <label class="sr-only" for="quizInput">Type the German translation</label>
+              <input id="quizInput" type="text" placeholder="Type German..." />
+              <button class="secondary-button" type="submit">Check</button>
+            </form>
+
+            <div id="answerBlock" class="answer-block is-hidden">
+              <div class="answer-label" id="answerLabel">German</div>
+              <p id="answerText"></p>
+              <p id="grammarText" class="grammar-note"></p>
+            </div>
+
+            <div id="quizFeedback" class="quiz-feedback is-hidden"></div>
+          </article>
+
+          <div class="card-actions">
+            <button id="speakButton" class="icon-button" type="button" aria-label="Play German audio" title="Play German audio [S]">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+              </svg>
+            </button>
+            <button id="revealButton" class="primary-button" type="button">Reveal <kbd>Space</kbd></button>
+            <button id="knowButton" class="secondary-button" type="button">I Knew It <kbd>K</kbd></button>
+            <button id="reviewButton" class="secondary-button danger" type="button">Review <kbd>R</kbd></button>
+            <button id="nextButton" class="secondary-button" type="button">Next <kbd>Space</kbd></button>
+          </div>
+        </section>
+
+        <aside class="panel progress-panel" aria-label="Progress forecast">
+          <section class="forecast">
+            <div class="section-title">Forecast</div>
+            <div class="forecast-main">
+              <span id="forecastLevel">A1 Pack</span>
+              <strong id="forecastDays">30 days</strong>
+              <small id="forecastDate">Finish date</small>
+            </div>
+          </section>
+
+          <section class="pack-list" aria-label="Pack timeline">
+            <div class="pack-row">
+              <span>A1 Basics</span>
+              <strong id="a1Days">30d</strong>
+            </div>
+            <div class="pack-row">
+              <span>A2 Daily Life</span>
+              <strong id="a2Days">50d</strong>
+            </div>
+            <div class="pack-row">
+              <span>B1 Speaking</span>
+              <strong id="b1Days">70d</strong>
+            </div>
+            <div class="pack-row">
+              <span>B2 Fluency</span>
+              <strong id="b2Days">85d</strong>
+            </div>
+            <div class="pack-row">
+              <span>C1 Advanced</span>
+              <strong id="c1Days">100d</strong>
+            </div>
+          </section>
+
+          <section class="goal-summary">
+            <div class="section-title">Core German</div>
+            <strong id="totalDays">335 days</strong>
+            <span id="totalDate">At your current pace</span>
+          </section>
+
+          <section class="weak-list">
+            <div class="section-title">Weak Words</div>
+            <div id="weakWords" class="weak-tags"></div>
+          </section>
+        </aside>
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
