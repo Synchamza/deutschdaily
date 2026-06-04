@@ -25,15 +25,6 @@ A dark-themed, goal-based English ↔ German flashcard app with daily targets, s
 
 ## Getting Started
 
-No build step needed. Just open `index.html` in any modern browser.
-
-```
-Project - Green/
-├── index.html   # App shell and layout
-├── styles.css   # Dark theme styles
-├── app.js       # All logic, sentence data, and state management
-└── README.md
-```
 
 ## How It Works
 
@@ -57,14 +48,3 @@ Project - Green/
 
 Sentence packs are designed to be easy to extend. Add new entries to the `sentences` array in `app.js` following this format:
 
-```js
-{
-  id: "a1-009",
-  level: "A1",
-  category: "Travel",
-  english: "Where is the bus stop?",
-  german: "Wo ist die Bushaltestelle?",
-  grammar: "Die Bushaltestelle is feminine. Wo asks for a location.",
-  weak: ["Bushaltestelle"],
-}
-```
